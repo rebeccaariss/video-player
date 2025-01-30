@@ -24,7 +24,7 @@ body {
 }
 
 .player {
-  max-width: 80vw;
+  max-width: 80vw; /* 80% of window */
   min-width: 800px;
   border: 5px solid black;
   border-radius: 10px;
@@ -35,7 +35,8 @@ body {
 
 video {
   border-radius: 5px;
-
+  width: 100%; /* 100% of player width */
+  height: auto;
 }
 
 /* Containers */
@@ -207,7 +208,10 @@ select > option {
 
 /* Media Query: Large Smartphone (Vertical) */
 @media screen and (max-width: 600px) {
-
+  .player {
+    min-width: 0;
+    max-width: 95vw; /* Rather than the standard 80%, because we're working with a much smaller screen, we want max-width to be wider than for desktop. */
+  }
 
   .fas {
     font-size: 20px;
