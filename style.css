@@ -123,6 +123,8 @@ video {
 
 /* Play & Pause */
 .play-controls {
+  display: flex;
+  gap: 10px; /* Possibly come back to this issue (fixing play button) */
   margin-right: 15px;
 }
 
@@ -177,10 +179,13 @@ video {
   margin-right: 15px;
 }
 
-
+select,
+option {
+  cursor: pointer;
+}
 
 select {
-
+  background: transparent;
   color: var(--font-color);
   border: none;
   font-size: 18px;
@@ -189,7 +194,9 @@ select {
   border-radius: 5px;
 }
 
-
+select:focus {
+  outline: none;
+}
 
 select > option {
   background: rgba(0, 0, 0, 0.9);
