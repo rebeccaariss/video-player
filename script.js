@@ -46,6 +46,14 @@ function updateProgress() {
   duration.textContent = `${displayTime(video.duration)}`;
 }
 
+// Click to adjust video progress:
+function setProgress(e) {
+  const newTime = e.offsetX / progressRange.offsetWidth; // offsetX represents pixel value
+  progressBar.style.width = `${newTime * 100}%`;
+  video.currentTime = newTime * video.duration;
+  // the offsetX value is essentially a percentage value, so if 0.2 is 20%, say the video.duration is 20 seconds, 0.2 * 20 = 4. (20% of a 20 second video is 4)
+}
+
 
 // Volume Controls --------------------------- //
 
@@ -63,3 +71,4 @@ playBtn.addEventListener('click', togglePlay);
 video.addEventListener('click', togglePlay); // allows you to click anywhere on the video to play/pause
 video.addEventListener('timeupdate', updateProgress);
 video.addEventListener('canplay', updateProgress);
+progressRange.addEventListener('click', setProgress);
