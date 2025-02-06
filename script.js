@@ -56,7 +56,17 @@ function setProgress(e) {
 
 
 // Volume Controls --------------------------- //
-
+function changeVolume(e) {
+  let volume = e.offsetX / volumeRange.offsetWidth; // Same as with progress bar
+  // Round down or up at start and end of volume slider for ease of use:
+  if (volume < 0.1) {
+    volume = 0;
+  } else if (volume > 0.9) {
+    volume = 1;
+  }
+  volumeBar.style.width = `${volume * 100}%`;
+  video.volume = volume;
+}
 
 
 // Change Playback Speed -------------------- //
@@ -72,3 +82,4 @@ video.addEventListener('click', togglePlay); // allows you to click anywhere on 
 video.addEventListener('timeupdate', updateProgress);
 video.addEventListener('canplay', updateProgress);
 progressRange.addEventListener('click', setProgress);
+volumeRange.addEventListener('click', changeVolume);
