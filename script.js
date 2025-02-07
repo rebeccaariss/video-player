@@ -56,6 +56,8 @@ function setProgress(e) {
 
 
 // Volume Controls --------------------------- //
+let lastVolume = 1; // by default, the value for volume is 1 (100%);
+
 function changeVolume(e) {
   let volume = e.offsetX / volumeRange.offsetWidth; // Same as with progress bar
   // Round down or up at start and end of volume slider for ease of use:
@@ -76,6 +78,20 @@ function changeVolume(e) {
   } else if (volume === 0) {
     volumeIcon.classList.add('fas', 'fa-volume-off');
   }
+
+  lastVolume = volume; // keeping track of volume value globally any time it's changed by setting lastVolume (which can then be referenced elsewhere).
+}
+
+// Mute/Unmute:
+function toggleMute() {
+  if (video.volume) {
+    lastVolume = video.volume;
+    video.volume = 0; // setting to 0 to mute, but we still want to track lastVolume for toggle.
+    volumeBar.style.width = 0;
+  } else { // if video *was* muted, then change back to value from lastVolume and style accordingly:
+    video.volume = lastVolume;
+    volumeBar.style.width = `${lastVolume * 100}%`;
+  }
 }
 
 
@@ -93,3 +109,4 @@ video.addEventListener('timeupdate', updateProgress);
 video.addEventListener('canplay', updateProgress);
 progressRange.addEventListener('click', setProgress);
 volumeRange.addEventListener('click', changeVolume);
+volumeIcon.addEventListener('click', toggleMute);
