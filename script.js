@@ -84,13 +84,18 @@ function changeVolume(e) {
 
 // Mute/Unmute:
 function toggleMute() {
+  volumeIcon.className = '';
   if (video.volume) {
     lastVolume = video.volume;
     video.volume = 0; // setting to 0 to mute, but we still want to track lastVolume for toggle.
     volumeBar.style.width = 0;
+    volumeIcon.classList.add('fas', 'fa-volume-mute');
+    volumeIcon.setAttribute('title', 'Unmute');
   } else { // if video *was* muted, then change back to value from lastVolume and style accordingly:
     video.volume = lastVolume;
     volumeBar.style.width = `${lastVolume * 100}%`;
+    volumeIcon.classList.add('fas', 'fa-volume-up');
+    volumeIcon.setAttribute('title', 'Mute');
   }
 }
 
