@@ -7,6 +7,7 @@ const volumeRange = document.querySelector('.volume-range');
 const volumeBar = document.querySelector('.volume-bar');
 const currentTime = document.querySelector('.time-elapsed');
 const duration = document.querySelector('.time-duration');
+const speed = document.querySelector('.player-speed');
 const fullscreenBtn = document.querySelector('.fullscreen');
 
 // Play & Pause ----------------------------------- //
@@ -83,6 +84,7 @@ function changeVolume(e) {
 }
 
 // Mute/Unmute:
+// TODO: track volume icon status globally in the same way lastVolume was tracked in order to reflect last icon state and not go back to fa-volume-up only.
 function toggleMute() {
   volumeIcon.className = '';
   if (video.volume) {
@@ -101,7 +103,9 @@ function toggleMute() {
 
 
 // Change Playback Speed -------------------- //
-
+function changeSpeed() {
+  video.playbackRate = speed.value;
+}
 
 
 // Fullscreen ------------------------------- //
@@ -115,3 +119,4 @@ video.addEventListener('canplay', updateProgress);
 progressRange.addEventListener('click', setProgress);
 volumeRange.addEventListener('click', changeVolume);
 volumeIcon.addEventListener('click', toggleMute);
+speed.addEventListener('change', changeSpeed);
