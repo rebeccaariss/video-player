@@ -18,6 +18,12 @@ body {
   font-family: Helvetica, sans-serif;
 }
 
+/* TODO: Google fonts import, adjust font with screen resize */
+.greeting {
+  display: flex;
+  justify-content: center;
+}
+
 .fas {
   color: var(--font-color);
   font-size: 35px;
