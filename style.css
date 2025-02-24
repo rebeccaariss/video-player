@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap');
+
 :root {
   --primary-color: rgb(74, 190, 115);
   --font-color: white;
@@ -15,13 +17,16 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: Helvetica, sans-serif;
 }
 
-/* TODO: Google fonts import, adjust font with screen resize */
+/* TODO: Video selector/rotation; rotate through on word selection (peaceful, mindful, calm, etc). Make UI clear: should be obvious that a selection can be made. Change tab info, too. */
 .greeting {
   display: flex;
   justify-content: center;
+  font-family: "Lato", serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 0.9rem;
 }
 
 .fas {
@@ -231,6 +236,10 @@ select > option {
 
 /* Media Query: Large Smartphone (Vertical) */
 @media screen and (max-width: 600px) {
+  .greeting {
+    font-size: 0.7rem;
+  }
+
   .player {
     min-width: 0;
     max-width: 95vw; /* Rather than the standard 80%, because we're working with a much smaller screen, we want max-width to be wider than for desktop. */
@@ -280,8 +289,12 @@ select > option {
   }
 }
 
-/* Media Query: Large Smartphone (Horizontal) */
+/* Media Query: Large Smartphone (Horizontal -- Note horizontal view in dev tools! Firefox, too.) */
 @media screen and (max-width: 900px) and (max-height: 500px) {
+  .greeting {
+    font-size: 0.6rem;
+  }
+
   .player {
     max-height: 95vh;
     max-width: auto;
